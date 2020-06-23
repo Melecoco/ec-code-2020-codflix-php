@@ -88,19 +88,53 @@ class Media {
   * -------- GET LIST --------
   ***************************/
 
-  public static function filterMedias( $title ) {
+  public static function filter($title){
 
-    // Open database connection
+    
     $db   = init_db();
 
-    $req  = $db->prepare( "SELECT * FROM media WHERE title = ? ORDER BY release_date DESC" );
-    $req->execute( array( '%' . $title . '%' ));
+    if(empty($title)){
+      $req = $db->prepare("SELECT * FROM media");
+      $req->execute();
 
+      // Close databse connection
+      $db = null;
+      return $req ->fetchALL();
+    }
+    else{
+      $req = $db->prepare('SELECT * FROM media WHERE title LIKE "%' . $title . '%"');
+      $req->execute();
+    }
+    
     // Close databse connection
     $db   = null;
 
     return $req->fetchAll();
-
   }
+
+
+  public static function getMediaById($id){
+    $db   = init_db();
+    $req = $db->prepare("SELECT * FROM media WHERE id=$id");
+    $req->execute();
+    $db   = null;
+
+    return $req->fetchAll();
+  }
+
+  // public static function filterMedias( $title ) {
+
+  //   // Open database connection
+  //   $db   = init_db();
+
+  //   $req  = $db->prepare( "SELECT * FROM media WHERE title = ? ORDER BY release_date DESC" );
+  //   $req->execute( array( '%' . $title . '%' ));
+
+  //   // Close databse connection
+  //   $db   = null;
+
+  //   return $req->fetchAll();
+
+  // }
 
 }
