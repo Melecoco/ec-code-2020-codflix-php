@@ -1,4 +1,5 @@
-<?php ob_start(); ?>
+<?php ob_start(); 
+$error_msg = $_POST['error_msg']?>
 
 <div class="landscape">
   <div class="bg-black">
