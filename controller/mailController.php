@@ -32,12 +32,12 @@ function sendMail(){
     $mail = htmlentities(strtolower($email));
 
     $formcontent="From: $name \n Message: $message";
-    $recipient = "melec.duhalgouet@itescia.fr";
+    $recipient = "contact@codflix.com";
     $subject = "Contact Form";
     $mailheader = "From: $email \r\n";
     $headers  = 'From:'.$nom.' <'.$email.'>' . "\r\n";
     mail($recipient, $subject, $formcontent, $headers) or die("Error!");
-    
+
     $_POST['error_msg'] = $error_msg;}
     require('view/contactUs.php');
 }  
