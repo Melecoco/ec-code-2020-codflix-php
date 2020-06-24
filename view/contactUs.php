@@ -41,7 +41,12 @@ $success_msg = $_POST['success_msg'];
             <span class="success-msg">
               <?= isset($success_msg) ? $success_msg : null; ?>
             </span>
+            
           </form>
+          <div class="d-flex justify-content-center">
+          <button class="btn bg-red" onclick="location.href='index.php'">Revenir à la page précédente</button>
+          </div>    
+          
         </div>
       </div>
       <div class="col-md-6 full-height">
