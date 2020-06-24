@@ -122,19 +122,34 @@ class Media {
     return $req->fetchAll();
   }
 
-  // public static function filterMedias( $title ) {
+  public static function addFilmToMediaTable($id, $genre_id, $title, $release_date, $summary, $trailer_url, $poster_url){
+    $type = "film";
+    $status = "publié";
+    //for now genre_id can only be 1, 2 or 3
+    $genre_id = 3;
+    $db = init_db();
 
-  //   // Open database connection
-  //   $db   = init_db();
+    $request = "INSERT INTO `media`(`id`, `genre_id`, `title`, `type`, `status`, `release_date`, `summary`, `trailer_url`, `poster_url`) VALUES ($id,3, '$title','$type','$status','$release_date','$summary','$trailer_url','$poster_url')";
+    $req = $db->prepare($request);
 
-  //   $req  = $db->prepare( "SELECT * FROM media WHERE title = ? ORDER BY release_date DESC" );
-  //   $req->execute( array( '%' . $title . '%' ));
+    $req->execute();
 
-  //   // Close databse connection
-  //   $db   = null;
+    $db = null;
+  }
 
-  //   return $req->fetchAll();
+  public static function filterMedias( $title ) {
 
-  // }
+  //Open database connection
+  $db   = init_db();
+
+  $req  = $db->prepare("SELECT * FROM media WHERE title = ? ORDER BY release_date DESC" );
+  $req->execute( array( '%' . $title . '%' ));
+
+  //Close databse connection
+  $db   = null;
+
+  return $req->fetchAll();
+
+  }
 
 }
