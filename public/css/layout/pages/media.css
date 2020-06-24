@@ -8,13 +8,18 @@
 
     margin-bottom: 40px;
 }
-
+.serie{
+    background: red;
+    border: solid 2px red;
+}
+.film{
+    background:pink;
+    border: solid 2px pink;
+}
 .media-list .item {
+   
     flex-basis: 24%;
     margin: 4px;
-
-    background: #1f1f1f;
-
     padding-bottom: 25px;
 }
 
