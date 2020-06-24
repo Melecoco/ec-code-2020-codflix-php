@@ -65,7 +65,7 @@ function registration() {
       $new_user->setEmail($mail);
       $new_user->setPassword($password);
       $new_user->createUser();
-  
+      require("view/auth/loginView.php");
       }
     }
   }
