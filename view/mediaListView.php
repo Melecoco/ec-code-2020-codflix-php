@@ -34,7 +34,7 @@ $query_params = "&language=en-US&sort_by=popularity.desc&include_adult=false&inc
     $response = json_decode(curl_exec($curl));
 
     $results = $response->results;
-    
+
     $poster_base_url = "https://image.tmdb.org/t/p/w300/";
 
     foreach($results as $media){
@@ -58,6 +58,10 @@ getMediaFromApi();
 
 <div class="row">
     <div class="col-md-4 offset-md-8">
+    
+            <button>Séries</button>
+                <button>Films</button>
+            
         <form method="get">
             <div class="form-group has-btn">
                 <input type="search" id="search" name="title" value="<?= $search; ?>" class="form-control"
