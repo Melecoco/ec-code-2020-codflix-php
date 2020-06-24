@@ -42,8 +42,8 @@
   background-color: var(--color-red) !important;
   color: white !important;
 }
-.filterType-btn:hover{
-  background-color: var(--color-red) !important;
+.filterType-btn:active{
+  background-color: var(--color-blue) !important;
   color: white !important;
 }
 
