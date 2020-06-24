@@ -60,7 +60,7 @@ getMediaFromApi();
     <div class="col-md-6 d-flex p-1">
        
             <button class="btn btn-block filterType-btn m-1 m-2">Séries</button>
-            <button class="btn btn-block filterType-btn  m-1  m-2">Films</button>
+            <button class="btn btn-block filterType-btn m-1  m-2">Films</button>
         
     </div>
 
