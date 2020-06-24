@@ -1,4 +1,8 @@
-<?php ob_start(); ?>
+<?php ob_start(); 
+$error_msg = $_POST['error_msg'];
+$success_msg = $_POST['success_msg'];
+
+?>
 
 <div class="landscape">
   <div class="bg-black">
@@ -11,32 +15,31 @@
           <form method="post" action="index.php?action=contact" class="custom-form">
 
             <div class="form-group">
-              <label for="email">Your name</label>
+              <label for="name">Your name</label>
               <input type="text" name="name" value="" id="name" class="form-control" />
             </div>
 
             <div class="form-group">
-              <label for="password">Your email</label>
+              <label for="email">Your email</label>
               <input type="email" name="email" id="email" class="form-control" />
             </div>
 
             <div class="form-group">
               <label for="comment">Message</label>
-              <textarea class="form-control" rows="5" id="comment"></textarea>
+              <textarea class="form-control" name="content" rows="5" id="content"></textarea>
             </div>
 
             <div class="form-group">
-              <div class="row">
-                <div class="col-md-6">
+              <div class="row d-flex justify-content-center">               
                   <button type="submit" class="btn bg-red">Send</button>
-                </div>
-              <div class="col-md-6">
-              </div>
             </div>
           </div>
 
             <span class="error-msg">
               <?= isset( $error_msg ) ? $error_msg : null; ?>
+            </span>
+            <span class="success-msg">
+              <?= isset($success_msg) ? $success_msg : null; ?>
             </span>
           </form>
         </div>
