@@ -27,6 +27,22 @@
   background-color: var(--color-blue) !important;
 }
 
+/* adding a class for "Nous Contacter" button */
+.bg-green {
+  background-color: var(--color-green) !important;
+}
+
+.filterType-btn{
+  background-color: transparent;
+  color: var(--color-red) ! important;
+  border-color: var(--color-red) !important;
+}
+
+.filterType-btn:hover{
+  background-color: var(--color-red) !important;
+  color: white !important;
+}
+
 .bg-black {
   background-color: rgba(0, 0, 0, 0.1);
 }

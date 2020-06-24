@@ -13,7 +13,7 @@
             </div>
             <div class="row btn-container">
                 <div class="col-md-6"><a href="index.php?action=login" class="btn btn-block bg-red">Connexion</a></div>
-                <div class="col-md-6"><a href="index.php?action=contact" class="btn btn-block bg-green">Connexion</a></div>
+                <div class="col-md-6"><a href="index.php?action=contact" class="btn btn-block bg-green">Nous Contacter</a></div>
                 <div class="col-md-6"><a href="index.php?action=signup" class="btn btn-block bg-blue">Inscription</a></div>
             </div>
         </div>

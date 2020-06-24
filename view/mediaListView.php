@@ -57,13 +57,16 @@ getMediaFromApi();
 ?>
 
 <div class="row">
-    <div class="col-md-4 offset-md-8">
-    
-            <button>Séries</button>
-                <button>Films</button>
-            
+    <div class="col-md-6 d-flex p-1">
+       
+            <button class="btn btn-block filterType-btn m-1 m-2">Séries</button>
+            <button class="btn btn-block filterType-btn  m-1  m-2">Films</button>
+        
+    </div>
+
+    <div class="col-md-6 p-1">
         <form method="get">
-            <div class="form-group has-btn">
+            <div class="form-group has-btn m-2">
                 <input type="search" id="search" name="title" value="<?= $search; ?>" class="form-control"
                        placeholder="Rechercher un film ou une série">
 
@@ -73,7 +76,7 @@ getMediaFromApi();
     </div>
 </div>
 
-<div class="media-list">
+<div class="media-list justify-content-around mt-4">
     <?php foreach( $medias as $media ): ?>
 
         <a class="item" href="../ec-code-2020-codflix-php/view/detailMediaView.php?media=<?=$media['id'];?>">
