@@ -99,7 +99,9 @@ class Media {
 
       // Close databse connection
       $db = null;
-      return $req ->fetchALL();
+      $media = $req ->fetchALL();
+      shuffle($media);
+      return $media;
     }
     else{
       $req = $db->prepare('SELECT * FROM media WHERE title LIKE "%' . $title . '%"');
@@ -122,8 +124,7 @@ class Media {
     return $req->fetchAll();
   }
 
-  public static function addFilmToMediaTable($id, $genre_id, $title, $release_date, $summary, $trailer_url, $poster_url){
-    $type = "film";
+  public static function addFilmToMediaTable($id, $genre_id, $type, $title, $release_date, $summary, $trailer_url, $poster_url){
     $status = "publié";
     //for now genre_id can only be 1, 2 or 3
     $genre_id = 3;
