@@ -1,5 +1,3 @@
-
-
 <?php ob_start(); ?>
 
 <?php
@@ -125,10 +123,10 @@ function getYoutubeUrl($film_id){
 <script>
 	function onFormChange(){
 		const title = document.getElementById('search');
-
+        
         let queryParams = "";
         const titleValue = title.value;
-		
+		console.log(titleValue);
 		if (titleValue.length) queryParams += `&search=${title.value}`;
 
 		const url = `http://localhost:8888/ec-code-2020-codflix-php/index.php?action=mediaListDisplayer${queryParams}`;
@@ -138,7 +136,7 @@ function getYoutubeUrl($film_id){
 			.then(innerHTML => {
 				const node = document.createElement("div");
 				node.innerHTML = innerHTML;
-                console.log()
+            
 				document.querySelector('.media-list').replaceWith(node);
 			})
 	}

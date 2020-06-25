@@ -88,11 +88,11 @@ class Media {
   * -------- GET LIST --------
   ***************************/
 
-  public static function filter($title, $type=""){
-
+  public static function filter($title){
+    echo 'filter' . $title;
     $db   = init_db();
-
-    if(empty($title) || $title == "" || $type == ""){
+//|| $type == ""
+    if(empty($title) || $title == "" ){
       $req = $db->prepare("SELECT * FROM media");
       $req->execute();
 
