@@ -17,12 +17,13 @@ function mediaPage() {
 
 function mediaListDisplayer() {
   $title = isset($_GET['search']) ? $_GET['search'] : null;
-  $type = isset($_GET['type']) ? $_GET['type'] : null;
+  //$type = isset($_GET['type']) ? $_GET['type'] : null;
 
+  echo $title;
   //$gender_id = isset($_GET['gender_id']) ? $_GET['gender_id'] : null;
   //$type = isset($_GET['type']) ? $_GET['type'] : null;
   //$release_date = isset($_GET['release_date']) ? $_GET['release_date'] : null;
-  $medias = Media::filter($title, $type);
+  $medias = Media::filter($title);
   require('view/component/mediaListDisplayer.php');
 
 }
