@@ -1,72 +1,91 @@
 <?php ob_start(); ?>
-
+ 
 <?php
-
-//delete this
+ require_once( 'model/user.php' );
 include("../model/database.php");
+$user_id = $_SESSION['user_id'];
+$userId = $_POST['userId'];
+
+echo $userId;
+$user_data = User::getUserById($user_id);
+
+//var_dump($user_data);
+$user_mail = $user_data["email"];
+
+$error_msg = $_POST['err_password'];
+$success_msg = $_POST['success_password'];
+
+$error_mail = $_POST['err_mail'];
+$success_mail = $_POST['success_mail'];
 ?>
 
 <div class="row">
-    <div class="col-md-6 d-flex p-1">
-       
-            <button class="btn btn-block filterType-btn m-1 m-2">Séries</button>
-            <button class="btn btn-block filterType-btn m-1  m-2">Films</button>
-        
-    </div>
-
-    <div class="col-md-6 p-1">
-        <form method="get">
-            <div class="form-group has-btn m-2">
-                <input type="search" id="search" name="title" value="<?= $search; ?>" class="form-control"
-                       placeholder="Rechercher un film ou une série">
-
-                <button type="submit" class="btn btn-block bg-red">Valider</button>
-            </div>
-        </form>
-    </div>
+  <div class="auth-container"><h2>votre em<span>'ail : <?php echo $user_mail ?><span></h2></div>
 </div>
 
 <div class="media-list justify-content-around mt-4">
-<div class="landscape">
-  <div class="bg-black">
-    <div class="row no-gutters">
-      <div class="full-height bg-white">
-        <div class="auth-container">
-          <h2><span>Cod</span>'Flix</h2>
-          <h3>Connexion</h3>
+        <div class="col-6">
+        <form method="post" action="index.php?action=newMail" class="custom-form m-3">
 
-          <form method="post" action="index.php?action=login" class="custom-form">
+          <div class="form-group">
+            <label for="newMail">Nouvelle adresse mail</label>
+            <input type="email" name="newMail" id="newMail" class="form-control" />
+          </div>
 
-            <div class="form-group">
-              <label for="email">Adresse email</label>
-              <input type="email" name="email" value="" id="email" class="form-control" />
-            </div>
-
-            <div class="form-group">
-              <label for="password">Mot de passe</label>
-              <input type="password" name="password" id="password" class="form-control" />
-            </div>
-
-            <div class="form-group">
-              <div class="row">
-                <div class="col-md-6">
-                  <input type="submit" name="Valider" class="btn btn-block bg-red" />
-                </div>
-                <div class="col-md-6">
-                  <a href="index.php?action=signup" class="btn btn-block bg-blue">Inscription</a>
-                </div>
+          <div class="form-group">
+            <div class="row justify-content-center">
+              <div class="col-md-6">
+                <input type="submit" name="Valider" class="btn btn-block bg-red" />
               </div>
             </div>
-
-            <span class="error-msg">
-              <?= isset( $error_msg ) ? $error_msg : null; ?>
-            </span>
-          </form>
-        </div>
+          </div>
+          <span class="error-msg">
+            <?= isset( $error_mail ) ? $error_mail : null; ?>
+          </span>
+          <span class="success-msg">
+            <?= isset( $success_mail ) ? $success_mail : null; ?>
+          </span>
+        </form>
       </div>
+      <div class="col-6">
+        <form method="post" action="index.php?action=newPassword" class="custom-form m-3">
 
-    </div>
-  </div>
+          <div class="form-group">
+            <label for="oldPassword">Ancien mot de passe</label>
+            <input type="password" name="oldPassword" value="" id="oldPassword" class="form-control" />
+          </div>
+
+          <div class="form-group">
+            <label for="newPassword">Nouveau mot de passe</label>
+            <input type="password" name="newPassword" id="newPassword" class="form-control" />
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword">confirmer nouveau mot de passe</label>
+            <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" />
+          </div>
+
+          <div class="form-group">
+            <div class="row justify-content-center">
+              <div class="col-md-6">
+                <input type="submit" name="Valider" class="btn btn-block bg-red" />
+              </div>
+            </div>
+          </div>
+          <span class="error-msg">
+            <?= isset( $error_msg ) ? $error_msg : null; ?>
+          </span>
+
+
+
+          <span class="success-msg">
+            <?= isset( $success_msg ) ? $success_msg : null; ?>
+          </span>
+        </form>
+</div>
+
+        </div>
+
 </div>
 
 </div>
@@ -75,3 +94,4 @@ include("../model/database.php");
 <?php $content = ob_get_clean(); ?>
 
 <?php require('dashboard.php'); ?>
+

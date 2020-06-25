@@ -90,6 +90,41 @@ class User {
 
   }
 
+  public static function updateUserEmail( $id, $newMail ) {
+
+    echo $newMail;
+    // Open database connection
+    $db   = init_db();
+
+    $req  = $db->prepare("UPDATE user SET email= :email WHERE id = :id");
+    $req->execute( array( 
+      'email' => $newMail, 
+      'id' => $id ));
+
+    // Close databse connection
+    $db   = null;
+
+    return $req->fetch();
+  }
+
+  public static function updateUserPassword( $id, $newPassword ) {
+
+    echo $newPasswordHASHED = hash('sha256', $newPassword);;
+    // Open database connection
+    $db   = init_db();
+
+    $req  = $db->prepare("UPDATE user SET password= :password WHERE id = :id");
+    $req->execute( array( 
+      'password' => $newPasswordHASHED, 
+      'id' => $id ));
+
+    // Close databse connection
+    $db   = null;
+
+    return $req->fetch();
+  }
+
+
   /**************************************
   * -------- GET USER DATA BY ID --------
   ***************************************/

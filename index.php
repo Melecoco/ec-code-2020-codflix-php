@@ -46,6 +46,17 @@ if ( isset( $_GET['action'] ) ):
 
     break;
 
+    case 'newPassword':
+
+      setNewPassword();
+
+    break;
+    case 'newMail':
+
+      setNewEmail();
+
+    break;
+
   endswitch;
 
 else:
