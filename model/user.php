@@ -11,7 +11,6 @@ class User {
   public function __construct( $user = null ) {
 
     if( $user != null ):
-      //print_r($user);
       $this->setId( isset( $user->id ) ? $user->id : null );
       $this->setEmail( $user->email );
       $this->setPassword( $user->password, isset( $user->password_confirm ) ? $user->password_confirm : false );

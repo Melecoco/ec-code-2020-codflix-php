@@ -8,7 +8,6 @@ $userId = $_POST['userId'];
 
 $user_data = User::getUserById($user_id);
 
-//var_dump($user_data);
 $user_mail = $user_data["email"];
 
 $error_msg = $_POST['err_password'];
