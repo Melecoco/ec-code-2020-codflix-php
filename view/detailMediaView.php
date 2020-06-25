@@ -1,8 +1,8 @@
 <?php
 include("../model/media.php");
-echo 'coucou';
+
 $id = $_GET['media'];
-echo $id;
+
 
 $data = Media::getMediaById($id);
 

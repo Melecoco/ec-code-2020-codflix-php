@@ -88,11 +88,10 @@ class Media {
   * -------- GET LIST --------
   ***************************/
 
-  public static function filter($title){
-    echo 'filter' . $title;
+  public static function filter($title, $type){
+
     $db   = init_db();
-//|| $type == ""
-    if(empty($title) || $title == "" ){
+    if(empty($title) || $title == "" || $type === ""){
       $req = $db->prepare("SELECT * FROM media");
       $req->execute();
 
@@ -102,9 +101,15 @@ class Media {
       shuffle($media);
       return $media;
     }
+    elseif(!$type==="" && $title){
+
+     $req = $db->prepare("SELECT * FROM media WHERE title LIKE '%$title%' AND type = '$type'");
+     $req->execute();
+    }
     elseif(!$type===""){
-     // $req = $db->prepare("SELECT * FROM media WHERE title LIKE '%$title%' AND type = '$type'");
-     // $req->execute();
+
+     $req = $db->prepare("SELECT * FROM media WHERE type LIKE '$type'");
+     $req->execute();
     }
     else{
       $req = $db->prepare('SELECT * FROM media WHERE title LIKE "%' . $title . '%"');

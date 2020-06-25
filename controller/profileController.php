@@ -40,19 +40,19 @@ function setNewPassword(){
   $oldPasswordHASHED = hash('sha256', $oldPassword);
 
   if(empty($oldPassword) || empty($newPassword) || empty($confirmPassword)){
-    echo 'ou </br>';
+
     $err_msg = "Au moins un champ est vide O_O";
   }
   elseif(!($oldPasswordHASHED === $currentPassword)){
-    echo 'ici </br>';
+
     $err_msg = "Le mot de passe ne correspond pas avec l'ancien mot de passe";
   }  
   elseif(!($newPassword === $confirmPassword)){
-    echo 'ou </br>';
+
     $err_msg = "Les nouveaux mots de passe ne correspondent pas";
   }
   else{
-    echo 'la !! </br>';
+
     User::updateUserPassword($user_id, $newPassword);
     $success_msg = "le mot de passe a été modifier";
   }
