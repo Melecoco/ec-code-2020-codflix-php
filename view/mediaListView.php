@@ -1,3 +1,5 @@
+
+
 <?php ob_start(); ?>
 
 <?php
@@ -115,10 +117,33 @@ function getYoutubeUrl($film_id){
     return $youtubeUrl;
 }
     
-getMediaFromApi();
-getTVShowFromApi();
+//getMediaFromApi();
+//getTVShowFromApi();
+
 ?>
 
+<script>
+	function onFormChange(){
+		const title = document.getElementById('search');
+
+        let queryParams = "";
+        const titleValue = title.value;
+		
+		if (titleValue.length) queryParams += `&search=${title.value}`;
+
+		const url = `http://localhost:8888/ec-code-2020-codflix-php/index.php?action=mediaListDisplayer${queryParams}`;
+
+		fetch(url)
+			.then(data => data.text())
+			.then(innerHTML => {
+				const node = document.createElement("div");
+				node.innerHTML = innerHTML;
+                console.log()
+				document.querySelector('.media-list').replaceWith(node);
+			})
+	}
+</script>
+        
 <div class="row">
     <div class="col-md-6 d-flex p-1">
        
@@ -126,39 +151,19 @@ getTVShowFromApi();
             <button class="btn btn-block filterType-btn m-1  m-2">Films</button>
         
     </div>
-
     <div class="col-md-6 p-1">
-        <form method="get">
+        <form method='get' id='filterForm' >
             <div class="form-group has-btn m-2">
-                <input type="search" id="search" name="title" value="<?= $search; ?>" class="form-control"
+                <input type="search" id="search" name="title" onkeydown="onFormChange()" value="<?= $search; ?>" class="form-control"
                        placeholder="Rechercher un film ou une série">
 
-                <button type="submit" class="btn btn-block bg-red">Valider</button>
+                <button class="btn btn-block bg-red">Valider</button>
             </div>
         </form>
     </div>
 </div>
 
-<div class="media-list justify-content-around mt-4">
-    <?php foreach( $medias as $media ): ?>
-
-        <a class="item <?php if($media['type'] === 'série') { echo 'serie'; }else{echo 'film';} ?>" href="../ec-code-2020-codflix-php/view/detailMediaView.php?media=<?=$media['id'];?>">
-            <div class="video">
-                <div>
-                <!-- mettre imageFilm dans iframe -->
-                   <!-- <iframe allowfullscreen="" frameborder="0"-->
-                   <img src="<?= $media['poster_url']; ?>" alt="<?= $media['title']; ?>">
-                            
-                            
-                           <!--  ></iframe> -->
-                </div>
-            </div>
-            <div class="title"><?= $media['title']; ?></div>
-            <div class="title"><?= $media['release_date']; ?></div>
-        </a>
-    <?php endforeach; ?>
-</div>
-
+<?php require('component/mediaListDisplayer.php')?>
 
 <?php $content = ob_get_clean(); ?>
 
