@@ -6,7 +6,6 @@ include("../model/database.php");
 $user_id = $_SESSION['user_id'];
 $userId = $_POST['userId'];
 
-echo $userId;
 $user_data = User::getUserById($user_id);
 
 //var_dump($user_data);

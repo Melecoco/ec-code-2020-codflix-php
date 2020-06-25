@@ -92,7 +92,6 @@ class User {
 
   public static function updateUserEmail( $id, $newMail ) {
 
-    echo $newMail;
     // Open database connection
     $db   = init_db();
 
@@ -108,8 +107,6 @@ class User {
   }
 
   public static function updateUserPassword( $id, $newPassword ) {
-
-    echo $newPasswordHASHED = hash('sha256', $newPassword);;
     // Open database connection
     $db   = init_db();
 

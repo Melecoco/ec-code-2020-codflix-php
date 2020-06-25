@@ -115,20 +115,32 @@ function getYoutubeUrl($film_id){
     return $youtubeUrl;
 }
     
-//getMediaFromApi();
-//getTVShowFromApi();
+getMediaFromApi();
+getTVShowFromApi();
 
 ?>
 
 <script>
+    let typeSelected;
+    function setType(type){
+    
+        typeSelected = type;
+        console.log(typeSelected);
+        onFormChange()
+    }
+
 	function onFormChange(){
 		const title = document.getElementById('search');
         
         let queryParams = "";
         const titleValue = title.value;
 		console.log(titleValue);
+
+        if(typeSelected) queryParams += `&type=${typeSelected}`;
+
 		if (titleValue.length) queryParams += `&search=${title.value}`;
 
+        console.log({queryParams})
 		const url = `http://localhost:8888/ec-code-2020-codflix-php/index.php?action=mediaListDisplayer${queryParams}`;
 
 		fetch(url)
@@ -136,7 +148,7 @@ function getYoutubeUrl($film_id){
 			.then(innerHTML => {
 				const node = document.createElement("div");
 				node.innerHTML = innerHTML;
-            
+                console.log(innerHTML);
 				document.querySelector('.media-list').replaceWith(node);
 			})
 	}
@@ -145,8 +157,8 @@ function getYoutubeUrl($film_id){
 <div class="row">
     <div class="col-md-6 d-flex p-1">
        
-            <button class="btn btn-block filterType-btn m-1 m-2">Séries</button>
-            <button class="btn btn-block filterType-btn m-1  m-2">Films</button>
+            <button onclick="setType('serie')" class="btn btn-block filterType-btn m-1 m-2">Séries</button>
+            <button onclick="setType('film')" class="btn btn-block filterType-btn m-1  m-2">Films</button>
         
     </div>
     <div class="col-md-6 p-1">
