@@ -88,11 +88,10 @@ class Media {
   * -------- GET LIST --------
   ***************************/
 
-  public static function filter($title){
+  public static function filter($title, $type){
 
     $db   = init_db();
-
-    if(empty($title)){
+    if(empty($title) || $title == "" || $type === ""){
       $req = $db->prepare("SELECT * FROM media");
       $req->execute();
 
@@ -101,6 +100,16 @@ class Media {
       $media = $req ->fetchALL();
       shuffle($media);
       return $media;
+    }
+    elseif(!$type==="" && $title){
+
+     $req = $db->prepare("SELECT * FROM media WHERE title LIKE '%$title%' AND type = '$type'");
+     $req->execute();
+    }
+    elseif(!$type===""){
+
+     $req = $db->prepare("SELECT * FROM media WHERE type LIKE '$type'");
+     $req->execute();
     }
     else{
       $req = $db->prepare('SELECT * FROM media WHERE title LIKE "%' . $title . '%"');
@@ -137,7 +146,7 @@ class Media {
     $db = null;
   }
 
-  public static function filterMedias( $title ) {
+  public static function filterMedias($title) {
 
   //Open database connection
   $db   = init_db();
@@ -148,6 +157,9 @@ class Media {
   //Close databse connection
   $db   = null;
 
+  $data = $req->fetchAll();;
+  
+  var_dump($data);
   return $req->fetchAll();
 
   }
