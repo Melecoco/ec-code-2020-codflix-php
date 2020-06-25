@@ -161,8 +161,6 @@ class Media {
   $db   = null;
 
   $data = $req->fetchAll();;
-  
-  var_dump($data);
   return $req->fetchAll();
 
   }

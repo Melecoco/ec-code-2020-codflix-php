@@ -11,7 +11,6 @@ include("../model/media.php");
     function setType(type){
     
         typeSelected = type;
-        console.log(typeSelected);
         onFormChange()
     }
 
@@ -20,13 +19,10 @@ include("../model/media.php");
         
         let queryParams = "";
         const titleValue = title.value;
-		console.log(titleValue);
 
         if(typeSelected) queryParams += `&type=${typeSelected}`;
 
 		if (titleValue.length) queryParams += `&search=${title.value}`;
-
-        console.log({queryParams})
 		const url = `http://localhost:8888/ec-code-2020-codflix-php/index.php?action=mediaListDisplayer${queryParams}`;
 
 		fetch(url)
@@ -34,7 +30,6 @@ include("../model/media.php");
 			.then(innerHTML => {
 				const node = document.createElement("div");
 				node.innerHTML = innerHTML;
-                console.log(innerHTML);
 				document.querySelector('.media-list').replaceWith(node);
 			})
 	}
