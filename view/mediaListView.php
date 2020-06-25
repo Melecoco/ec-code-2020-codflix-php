@@ -14,7 +14,7 @@ include("../model/media.php");
         onFormChange()
     }
 
-	function onFormChange(){
+	function onFormChange(){ 
 		const title = document.getElementById('search');
         
         let queryParams = "";
@@ -35,7 +35,7 @@ include("../model/media.php");
 	}
 </script>
         
-<div class="row">
+<div class="row ">
     <div class="col-md-6 d-flex p-1">
        
             <button onclick="setType('serie')" class="btn btn-block filterType-btn m-1 m-2">Séries</button>
