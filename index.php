@@ -7,6 +7,7 @@ require_once( 'controller/mediaController.php' );
 require_once('controller/mailController.php');
 require_once('controller/profileController.php');
 
+
 /**************************
 * ----- HANDLE ACTION -----
 ***************************/
@@ -54,6 +55,11 @@ if ( isset( $_GET['action'] ) ):
     case 'newMail':
 
       setNewEmail();
+
+    break;
+
+    case 'mediaListDisplayer':
+      mediaListDisplayer();
 
     break;
 
