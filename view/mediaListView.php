@@ -15,7 +15,7 @@ function getMediaFromApi(){
 
     $dicover_url = "discover/movie?";
 
-    $api_key = "api_key=b3614915c9940749621d53925f4408c9";
+    $api_key = 'api_key=b3614915c9940749621d53925f4408c9';
 
     $query_params = "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=true&page=1"; 
 
@@ -44,7 +44,8 @@ function getMediaFromApi(){
         $poster_url = $poster_base_url . $media->poster_path;
         $type = "film";
         //getTrailerByFilmId
-        $trailer_url = "";
+        
+        $trailer_url = getYoutubeUrl($id);
         //only one genre_id to stick to the database;
         $genre_ids = $media->genre_ids;
         $genre_id = $genre_ids[0];
@@ -86,26 +87,36 @@ function getTVShowFromApi(){
         $first_air_date = $media->first_air_date;
         $summary = $media->overview;
         $poster_url = $poster_base_url . $media->poster_path;
-        //getTrailerByFilmId
         $trailer_url = "";
         //only one genre_id to stick to the database;
         $genre_ids = $media->genre_ids;
         $genre_id = $genre_ids[0];
         $type = "série";
-
-        echo 'id: ' . $id . '</br>';
-        echo 'name: ' . $name . '</br>';
-        echo 'first_air_date: ' . $first_air_date . '</br>';
-        echo 'summary: ' . $summary . '</br>';
-        echo 'poster_url: ' . $poster_url . '</br>';
-        echo 'genre_id: ' . $genre_id . '</br>';
         Media::addFilmToMediaTable($id, $genre_id, $type, $name, $first_air_date, $summary, $trailer_url, $poster_url);
 
     }
 
 };
-//getMediaFromApi();
-//getTVShowFromApi();
+
+function getYoutubeUrl($film_id){
+    $curl = curl_init('https://api.themoviedb.org/3/movie/' . $film_id . '/videos? '. 'api_key=b3614915c9940749621d53925f4408c9' . '&language=en-US');
+
+    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+    $response = json_decode(curl_exec($curl));
+
+    $results = $response->results;
+
+    $key = $results{0}->key;
+
+    $youtubeUrl = 'http://www.youtube.com/embed/' .  $key;
+
+    return $youtubeUrl;
+}
+    
+getMediaFromApi();
+getTVShowFromApi();
 ?>
 
 <div class="row">

@@ -90,7 +90,6 @@ class Media {
 
   public static function filter($title){
 
-    
     $db   = init_db();
 
     if(empty($title)){

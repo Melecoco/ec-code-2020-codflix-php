@@ -16,3 +16,7 @@ $trailer_url = $data[0]['trailer_url'];
 
 echo $genre_id . " " . $title . " " . $status . " " . $type . " " . $release_date . " " . $summary . " " . $trailer_url;
 ?>
+
+<iframe allowfullscreen=""
+    src="<?= $trailer_url; ?>" >
+</iframe>
