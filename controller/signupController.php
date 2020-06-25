@@ -24,11 +24,11 @@ function signupPage() {
 ***************************/
 
 if(isset($_POST['Valider'])){
-  $error_msg = registration();
+  $error_msg = signUp();
   $_POST['error_msg'] = $error_msg;
 }
 
-function registration() {
+function signUp() {
 
   // On verifie d'abord qu'on reçoit des données via le formulaire 
   if(!empty($_POST)){

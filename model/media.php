@@ -103,15 +103,18 @@ class Media {
     }
     elseif(!$type==="" && $title){
 
+    //sql request when $type and $title are both defined
      $req = $db->prepare("SELECT * FROM media WHERE title LIKE '%$title%' AND type = '$type'");
      $req->execute();
     }
     elseif(!$type===""){
 
+      //sql request when only $type is defined
      $req = $db->prepare("SELECT * FROM media WHERE type LIKE '$type'");
      $req->execute();
     }
     else{
+      //sql request when only $title is defined
       $req = $db->prepare('SELECT * FROM media WHERE title LIKE "%' . $title . '%"');
       $req->execute();
     }

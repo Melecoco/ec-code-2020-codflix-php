@@ -27,6 +27,9 @@ function setNewEmail(){
   require('view/profileView.php');
 }
 
+//hash('sha256') is used to cript the password
+//validations and message for the user
+
 function setNewPassword(){
   $user_id = $_SESSION['user_id'];
   

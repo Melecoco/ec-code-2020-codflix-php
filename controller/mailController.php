@@ -1,6 +1,6 @@
 <?php 
 
-//function not sending mail because no mail server are configurated
+//function not sending mail because no mail server aren't configurated
 function sendMail(){
 
     if(!empty($_POST)){
@@ -10,6 +10,8 @@ function sendMail(){
     
     $error_msg = null;
       
+    //form validation, returning $error_msg or $success_msg to the user
+
     if(empty($name)){
         $error_msg =  "Le nom ne peut pas être vide";
      }
@@ -36,6 +38,8 @@ function sendMail(){
     $subject = "Contact Form";
     $mailheader = "From: $email \r\n";
     $headers  = 'From:'.$nom.' <'.$email.'>' . "\r\n";
+
+    //mail()function 
     mail($recipient, $subject, $formcontent, $headers) or die("Error!");
 
     $_POST['error_msg'] = $error_msg;}
